@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link} from 'react-router-dom';
 import { SiThemoviedatabase } from "react-icons/si";
 
 const Header = () => {
     const activeStyle = { color: 'pink' }
     return (
         <header className='header'>
-            <h1 className='logo'><SiThemoviedatabase /></h1>
+            <h1 className='logo'><Link to="/"><SiThemoviedatabase /></Link></h1>
             <nav>
                 <ul>
                     <li>
