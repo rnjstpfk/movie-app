@@ -72,7 +72,7 @@ const Home = () => {
                     ) : (
                         <div className="upMovie">
                             <div className="upComingImg">
-                                {randomMovie && <img src={`https://image.tmdb.org/t/p/w500${randomMovie.backdrop_path}`} alt={randomMovie.title} />}
+                                {randomMovie && <img src={`https://image.tmdb.org/t/p/original${randomMovie.backdrop_path}`} alt={randomMovie.title} />}
                             </div>
                             <div className="upComingInfo">
                                 <div className="upInfoText">

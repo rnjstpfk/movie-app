@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import { GrFormNext } from "react-icons/gr";
+import { GrFormPrevious } from "react-icons/gr";
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/pagination';
+// ✨ 추가해야 할 부분!
+import 'swiper/css/navigation';
+
 
 
 // import required modules
@@ -39,17 +43,37 @@ const Recommendations = () => {
                 {isLoading ? (<div className='loading'>Loading...</div>) : (
                     <div className="swiper-navigation">
                         <Swiper
-                            slidesPerView={5}
-                            spaceBetween={30}
-                            pagination={{
-                                clickable: true,
-                            }}
+                            slidesPerView={2}
+                            spaceBetween={5}
+                            
                             autoplay={{
                                 delay: 1500,
                                 disableOnInteraction: false,
                             }}
                             loop = {true}
-                            modules={[Pagination, Autoplay]}
+
+                            navigation={{
+                                nextEl:'.swiperNext',
+                                prevEl:'.swiperPrev'
+                            }}
+                            breakpoints={ {
+                                // when window width is >= 320px
+                                480: {
+                                slidesPerView: 3,
+                                spaceBetween: 20
+                                },
+                                // when window width is >= 480px
+                                780: {
+                                slidesPerView: 4,
+                                spaceBetween: 10
+                                },
+                                // when window width is >= 640px
+                                1240: {
+                                slidesPerView: 5,
+                                spaceBetween: 5
+                                }
+                            }}
+                            modules={[Navigation, Autoplay]}
                             className="mySwiper"
                         >
 
@@ -60,10 +84,14 @@ const Recommendations = () => {
                                 </SwiperSlide>
                             ))}
                         </Swiper>
+                        <div className="navigationWrap">
+                            <div className="swiperNext"><GrFormNext /></div>
+                            <div className="swiperPrev"><GrFormPrevious /></div>
+                        </div>
                     </div>
-                )
+            )
                 }
-            </div >
+        </div >
         </div >
     );
 };
