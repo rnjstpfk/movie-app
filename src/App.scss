@@ -1,0 +1,1168 @@
+@use './Reset' as *;
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: $color-dark-point;
+}
+
+.loading {
+    text-align: center;
+    font-size: 20px;
+    color: $color-dark-highlight;
+    margin: 50px 0;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; // 화면 최소 높이
+}
+
+.App>main {
+    flex: 1; // 콘텐츠가 남은 공간을 다 채움
+}
+
+
+/* ✅ Header 스타일 */
+.header {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    .logo {
+        color: $color-highlight;
+        font-size: 50px;
+
+        a {
+            color: $color-highlight;
+        }
+    }
+
+    nav {
+        ul {
+            display: flex;
+            align-items: center;
+
+            li {
+                margin-left: 20px;
+
+                a {
+                    text-transform: uppercase;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .loginBox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .welcome {
+            color: #fff;
+            /* ✅ "닉네임님" 가시성 확보 */
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .loginBtn,
+        button {
+            background: $color-dark-highlight;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+
+            &:hover {
+                background: pink;
+                color: #000;
+            }
+        }
+    }
+}
+
+/* ✅ 로그인 & 회원가입 페이지 공통 스타일 */
+.authPage,
+.signupPage {
+    max-width: 400px;
+    margin: 200px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    h2 {
+        margin-bottom: 20px;
+        color: $color-dark-point;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background: $color-dark-highlight;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background: pink;
+                color: #000;
+            }
+        }
+    }
+
+    p {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    a {
+        color: $color-dark-highlight;
+        font-weight: bold;
+    }
+}
+
+
+
+//로그인
+/* 로그인 페이지 스타일 */
+.loginPage {
+    max-width: 400px;
+    margin: 200px auto;
+    padding: 40px 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+
+    h2 {
+        margin-bottom: 25px;
+        font-size: 28px;
+        color: $color-dark-point;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+
+            &:focus {
+                outline: none;
+                border-color: $color-dark-highlight;
+            }
+        }
+
+        button {
+            background: $color-dark-highlight;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                background: pink;
+                color: #000;
+            }
+        }
+    }
+
+    p {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #555;
+
+        a {
+            color: $color-dark-highlight;
+            font-weight: bold;
+            margin-left: 5px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+
+//회원가입
+.signupPage {
+    max-width: 400px;
+    margin: 200px auto;
+    padding: 40px 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+
+    h2 {
+        margin-bottom: 25px;
+        font-size: 28px;
+        color: $color-dark-highlight; // 로그인과 대비되는 색상 포인트
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+
+            &:focus {
+                outline: none;
+                border-color: $color-dark-highlight;
+            }
+        }
+
+        button {
+            background: $color-dark-point;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                background: pink;
+                color: #000;
+            }
+        }
+    }
+
+    p {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #555;
+
+        a {
+            color: $color-dark-point;
+            font-weight: bold;
+            margin-left: 5px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+//마이페이지
+.loginBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .welcome {
+        color: #fff;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .mypageLink {
+        background: #444;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 13px;
+        transition: background 0.3s ease;
+
+        &:hover {
+            background: pink;
+            color: #000;
+        }
+    }
+
+    .loginBtn,
+    button {
+        background: $color-dark-highlight;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+
+        &:hover {
+            background: pink;
+            color: #000;
+        }
+    }
+}
+
+//찜&즐겨찾기
+.mypage {
+    max-width: 900px;
+    margin: 150px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    h2 {
+        margin-bottom: 20px;
+        color: $color-dark-point;
+    }
+
+    .userInfo {
+        margin-bottom: 30px;
+
+        p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+    }
+
+    .nicknameBox {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 10px;
+
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        button {
+            background: $color-dark-highlight;
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background: pink;
+                color: #000;
+            }
+        }
+    }
+
+    .favoritesList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+
+        .favItem {
+            width: 150px;
+            text-decoration: none;
+            color: #333;
+
+            img {
+                width: 100%;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s;
+            }
+
+            &:hover img {
+                transform: scale(1.05);
+            }
+
+            h4 {
+                margin-top: 5px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+//홈
+.home {
+  .upMovie {
+    width: 100%;
+    position: relative;
+
+    .upComingImg img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .upComingInfo {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      color: #fff;
+      padding: 50px;
+      background: rgba(0, 0, 0, 0.4);
+
+      .upInfoText {
+        .title {
+          font-size: 28px;
+          font-weight: bold;
+        }
+        .original_title {
+          color: rgba(255, 255, 255, 0.6);
+        }
+        .overview {
+          margin-top: 10px;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+
+  .searchBox {
+    display: flex;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    input {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .searchBtn {
+      background: $color-dark-highlight;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      margin-left: 5px;
+      cursor: pointer;
+
+      .searchIcon {
+        font-size: 20px;
+        color: #fff;
+      }
+    }
+  }
+
+  .mainUpComing {
+    padding: 20px 50px;
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .movieList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 1%;
+      max-width: 1240px;
+      margin: 0 auto;
+
+      .movieItem {
+        width: 19%;
+        height: 400px;
+        background: $color-dark-point;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-3px);
+        }
+
+        .imgWrap {
+          width: 100%;
+          height: 320px;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            transition: transform 0.3s ease;
+          }
+
+          &:hover img {
+            transform: scale(1.05);
+          }
+        }
+
+        .textWrap {
+          padding: 10px;
+          color: #fff;
+          position: relative;
+
+          h3 {
+            font-size: small;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 5px 0;
+          }
+          p {
+            font-size: small;
+          }
+
+          .average {
+            position: absolute;
+            top: -15px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: $color-dark-highlight;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: x-small;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+          }
+        }
+      }
+    }
+
+    .more {
+      margin: 50px 0;
+      display: flex;
+      justify-content: center;
+
+      .loadMore {
+        background: $color-dark-point;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+          background: pink;
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+
+.upMovie {
+    width: 100%;
+    position: relative;
+
+    .upComingImg {
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .upComingInfo {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        color: #fff;
+        padding: 50px;
+        background: rgba(0, 0, 0, .4);
+
+        @media screen and (max-width: $breakpoint-tablet) {
+            position: static;
+            width: 100%;
+            color: #333;
+            padding: 20px;
+            background: $color-bg;
+
+        }
+
+        .upInfoText {
+            .title {
+                font-size: x-large;
+            }
+
+            .original_title {
+                color: rgba(255, 255, 255, .5);
+
+                @media screen and (max-width: $breakpoint-tablet) {
+                    color: $color-highlight;
+                }
+            }
+
+            .overview {
+                margin-top: 20px;
+                margin-bottom: 30px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                /* 표시할 최대 줄 수 */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: medium;
+            }
+
+            .release_date {
+                font-weight: bold;
+            }
+
+            .vote_average {
+                font-size: small;
+            }
+
+            .vote_count {
+                font-size: small;
+            }
+
+        }
+
+    }
+}
+
+.searchBox {
+    display: flex;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    margin: 0 auto;
+
+    input {
+        padding: 5px 10px;
+        flex-grow: 1;
+    }
+
+    .searchBtn {
+        background: none;
+        border: none;
+    }
+
+    .searchIcon {
+        font-size: 24px;
+        margin-left: 10px;
+    }
+}
+
+//찜 아이콘
+.mainUpComing {
+    padding: 20px 50px;
+
+    .movieList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 1%;
+        max-width: 1240px;
+        width: 100%;
+        margin: 0 auto;
+
+        .loading {
+            text-align: center;
+        }
+
+        
+    }
+}
+
+
+.moviesDetail {
+    margin-top: 100px;
+    padding: 50px;
+
+    .movie {
+        background: $color-bg;
+        padding: 30px;
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, .3);
+
+        .movieBox {
+            text-align: center;
+
+            img {
+                width: 85%;
+            }
+        }
+
+        .textBox {
+            margin: 30px auto;
+            padding: 20px 80px;
+
+            .textBoxtTitle {
+                font-size: 24px;
+                font-weight: bold;
+                color: $color-dark-highlight;
+            }
+
+            .textBoxtOriginal_title {
+                font-size: small;
+            }
+
+            .textBoxtOverview {
+                padding-top: 20px;
+                padding-bottom: 30px;
+            }
+
+            .textBoxtRelease_date {}
+
+            .textBoxtVote_average {}
+
+            .textBoxtVote_count {}
+
+            .textBoxtPopularity {}
+
+            .textBoxtStatus {}
+
+            .textBoxtTagline {}
+
+            .textBoxtGenres {
+                .textBoxtGenre {
+                    color: rgb(255, 0, 64);
+                    margin-right: 10px;
+                    font-size: small;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+.recommendations {
+    padding: 50px;
+    width: 1240px;
+    margin: 0 auto;
+    position: relative;
+    overflow-x: hidden;
+
+    @media screen and (max-width: $breakpoint-xl) {
+        width: 80%;
+        padding: 50px 20px;
+    }
+
+    .swiper-navigation {
+        text-align: center;
+
+        img {
+            width: 100%;
+            height: 317px;
+        }
+
+        h3 {
+            font-size: small;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    }
+
+    .navigationWrap {
+        .swiperNext {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            font-size: 50px;
+            cursor: pointer;
+            color: $color-dark-highlight;
+        }
+
+        .swiperPrev {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            font-size: 50px;
+            cursor: pointer;
+            color: $color-dark-highlight;
+        }
+    }
+}
+
+
+
+
+
+
+
+.more {
+    margin: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .loadMore {
+        background: $color-dark-point;
+        color: $color-dark-text;
+        padding: 10px 20px;
+        border: $color-border;
+        border-radius: 20px;
+    }
+}
+
+
+.footer {
+    background: $color-dark-bg;
+    color: $color-dark-text;
+    padding: 100px 50px;
+
+    .footerInner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p {}
+    }
+}
+
+.quickBtn {
+    position: fixed;
+    bottom: 80px;
+    right: 50px;
+
+    .top {
+        width: 30px;
+        height: 30px;
+        background: $color-dark-highlight;
+        border-radius: 50%;
+        border: none;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+
+        .upBtn {
+            color: #fff;
+        }
+    }
+}
+
+
+
+
+
+
+
+/* ✅ 드라마 목록 (MovieCard 스타일 사용) */
+.dramaPage {
+  padding: 120px 40px;
+  background: #fafafa;
+  min-height: 100vh;
+
+  h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: $color-dark-point;
+  }
+
+  .movieList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* ✅ 드라마 상세 페이지 */
+.dramaDetailPage {
+  max-width: 1000px;
+  margin: 300px auto 50px;
+  padding: 20px;
+  display: flex;
+  gap: 50px;
+
+  img {
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .dramaInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    h2 {
+      font-size: 28px;
+      color: #111;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #444;
+
+      strong {
+        display: inline-block;
+        min-width: 80px;
+        font-weight: bold;
+        color: #222;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 80%;
+    }
+
+    .dramaInfo {
+      width: 100%;
+    }
+  }
+}
+
+
+
+
+
+//comedy
+.comedyList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.comedyItem {
+    width: 200px;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+}
+
+.comedyItem img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+
+.comedyPage {
+    padding: 120px 40px;
+    /* Header 때문에 위쪽 여백 추가 */
+    background: #fafafa;
+    min-height: 100vh;
+
+    h2 {
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 30px;
+        color: $color-dark-point;
+    }
+
+    .movieList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* ✅ MovieCard 내부 스타일을 함께 정리 */
+.movieItem {
+    width: 180px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    img {
+        width: 100%;
+        height: 270px;
+        object-fit: cover;
+        border-bottom: 1px solid #eee;
+    }
+
+    h3 {
+        font-size: 14px;
+        margin: 10px 5px;
+        color: #333;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .likeBtn {
+        width: 100%;
+        padding: 8px;
+        border: none;
+        border-top: 1px solid #eee;
+        background: #f0f0f0;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+            background: pink;
+            color: #000;
+        }
+
+        &.liked {
+            background: pink;
+            color: #000;
+            font-weight: bold;
+        }
+    }
+}
+
+
+//코미디 디테일
+.comedyDetailPage {
+    max-width: 1000px;
+    margin: 300px auto 50px;
+    padding: 20px;
+    display: flex;
+    gap: 50px;
+
+    img {
+        width: 300px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .movieInfo {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        h2 {
+            font-size: 28px;
+            color: $color-dark-point;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444;
+
+            strong {
+                display: inline-block;
+                min-width: 80px;
+                font-weight: bold;
+                color: #222;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            width: 80%;
+        }
+
+        .movieInfo {
+            width: 100%;
+        }
+    }
+}
+
+
+
+//찜 하트
+.movieItem {
+  position: relative;
+  width: 200px;
+  background: #5a5a5a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  padding-bottom: 50px; /* ✅ 하트 공간 확보 */
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(248, 248, 248, 0.4);
+  }
+
+  img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  h3 {
+    font-size: 14px;
+    color: #fff;
+    padding: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  /* ✅ 하트 아이콘 */
+  .heartIcon {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+    transition: transform 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      transform: translateX(-50%) scale(1.1);
+      color: pink;
+    }
+
+    &.liked {
+      color: rgb(214, 34, 34);
+      text-shadow: 0 0 8px rgba(255, 0, 0, 0.2);
+    }
+  }
+}
