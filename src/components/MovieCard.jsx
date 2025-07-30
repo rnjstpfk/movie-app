@@ -4,7 +4,7 @@ import { doc, setDoc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebas
 import { onAuthStateChanged } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, type = "drama" }) => {
   const [userId, setUserId] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -42,19 +42,21 @@ const MovieCard = ({ movie }) => {
     }
   };
 
+  // ✅ type 값에 따라 라우트 결정
+  const linkPath = type === "comedy" ? `/comedy/${movie.id}` : `/drama/${movie.id}`;
+
   return (
-  <div className="movieItem">
-    <Link to={`/drama/${movie.id}`}>
-      <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title || movie.name} />
-    </Link>
-    <h3>{movie.title || movie.name || movie.original_name}</h3>
+    <div className="movieItem">
+      <Link to={linkPath}>
+        <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title || movie.name} />
+      </Link>
+      <h3>{movie.title || movie.name || movie.original_name}</h3>
 
-    <span className={`heartIcon ${isLiked ? 'liked' : ''}`} onClick={toggleLike}>
-      {isLiked ? '❤️' : '🤍'}
-    </span>
-  </div>
-);
-
+      <span className={`heartIcon ${isLiked ? 'liked' : ''}`} onClick={toggleLike}>
+        {isLiked ? '❤️' : '🤍'}
+      </span>
+    </div>
+  );
 };
 
 export default MovieCard;

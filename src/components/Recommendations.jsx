@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 43097c9ade5d1aa67b790f98457a82b1bc134c3b
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';

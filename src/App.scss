@@ -14,7 +14,6 @@ h2 {
     margin: 50px 0;
 }
 
-<<<<<<< HEAD
 html,
 body {
     height: 100%;
@@ -38,29 +37,6 @@ body {
     width: 100%;
     height: 100px;
     background-color: rgba(0, 0, 0, 0.6);
-=======
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.App {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; // 화면 최소 높이
-}
-
-.App > main {
-  flex: 1; // 콘텐츠가 남은 공간을 다 채움
-}
-
-
-.header {
-    width: 100%;
-    height: 100px;
-    background-color: rgba(0, 0, 0, .6);
->>>>>>> 43097c9ade5d1aa67b790f98457a82b1bc134c3b
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -82,10 +58,7 @@ html, body {
     nav {
         ul {
             display: flex;
-<<<<<<< HEAD
             align-items: center;
-=======
->>>>>>> 43097c9ade5d1aa67b790f98457a82b1bc134c3b
 
             li {
                 margin-left: 20px;
@@ -97,7 +70,6 @@ html, body {
             }
         }
     }
-<<<<<<< HEAD
 
     .loginBox {
         display: flex;
@@ -617,8 +589,6 @@ html, body {
       }
     }
   }
-=======
->>>>>>> 43097c9ade5d1aa67b790f98457a82b1bc134c3b
 }
 
 
@@ -718,10 +688,7 @@ html, body {
     }
 }
 
-<<<<<<< HEAD
 //찜 아이콘
-=======
->>>>>>> 43097c9ade5d1aa67b790f98457a82b1bc134c3b
 .mainUpComing {
     padding: 20px 50px;
 
@@ -738,91 +705,7 @@ html, body {
             text-align: center;
         }
 
-<<<<<<< HEAD
         
-=======
-        .movieItem {
-            width: 19%;
-            height: 400px;
-            background: $color-dark-point;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, .4);
-
-            /* color: #fff; */
-            @media screen and (max-width: $breakpoint-xl) {
-                width: 24%;
-            }
-
-            @media screen and (max-width: $breakpoint-desktop) {
-                width: 32%;
-            }
-
-            @media screen and (max-width: $breakpoint-tablet) {
-                width: 48%;
-            }
-
-            @media screen and (max-width: $breakpoint-mobile) {
-                width: 100%;
-            }
-
-        }
-
-        .imgWrap {
-            width: 100%;
-            height: 320px;
-            overflow: hidden;
-
-            img {
-                width: 100%;
-            }
-
-            &:hover {
-                img {
-                    transform: scale(1.1);
-                    transition: all .3s ease-in-out;
-                }
-            }
-        }
-
-        .textWrap {
-            position: relative;
-            padding: 10px;
-
-            h3 {
-                font-size: small;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                margin-top: 5px;
-                margin-bottom: 5px;
-            }
-
-            p {
-                font-size: small;
-            }
-
-            .average {
-                position: absolute;
-                top: -15px;
-                right: 10px;
-                width: 30px;
-                height: 30px;
-                background: $color-dark-highlight;
-                color: #fff;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 3;
-                font-size: x-small;
-                box-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
-            }
-        }
-
-
->>>>>>> 43097c9ade5d1aa67b790f98457a82b1bc134c3b
     }
 }
 
@@ -996,7 +879,6 @@ html, body {
 
 
 
-<<<<<<< HEAD
 /* ✅ 드라마 목록 (MovieCard 스타일 사용) */
 .dramaPage {
   padding: 120px 40px;
@@ -1027,54 +909,6 @@ html, body {
   padding: 20px;
   display: flex;
   gap: 50px;
-=======
-.detail {
-    padding: 150px 50px;
-
-    .loading {
-        text-align: center;
-        font-size: 24px;
-    }
-
-    .dramaList {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-
-        .dramaItem {
-            width: 200px;
-            text-align: center;
-            transition: all 0.3s ease;
-
-            img {
-                width: 100%;
-                border-radius: 10px;
-                transition: all 0.3s ease;
-            }
-
-            h3 {
-                margin-top: 10px;
-                font-size: 16px;
-            }
-
-            &:hover {
-                img {
-                    filter: brightness(0.7) saturate(1.2); // 살짝 어둡고 색감 풍부하게
-                    transform: scale(1.05);
-                }
-            }
-        }
-    }
-}
-
-.dramaDetailPage {
-  max-width: 1000px;
-  margin: 200px auto 50px;
-  padding: 20px;
-  display: flex;
-  gap: 40px;
->>>>>>> 43097c9ade5d1aa67b790f98457a82b1bc134c3b
 
   img {
     width: 300px;
@@ -1120,7 +954,6 @@ html, body {
     }
   }
 }
-<<<<<<< HEAD
 
 
 
@@ -1281,7 +1114,7 @@ html, body {
 .movieItem {
   position: relative;
   width: 200px;
-  background: #5a5a5a;
+  background: rgba(0, 0, 0, .5);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -1333,5 +1166,3 @@ html, body {
     }
   }
 }
-=======
->>>>>>> 43097c9ade5d1aa67b790f98457a82b1bc134c3b

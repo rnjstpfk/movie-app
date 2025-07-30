@@ -2,31 +2,47 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+const API_KEY = 'b0a9c9bb4ee8de9c553eb84f40f4e3d1';
+const TMDB_BASE = 'https://api.themoviedb.org/3';
+
 const ComedyDetail = () => {
-  const { id } = useParams(); // URL에서 영화 ID 추출
+  const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`https://api.themoviedb.org/3/movie/${id}?api_key=b0a9c9bb4ee8de9c553eb84f40f4e3d1&language=ko-KR`)
-      .then((res) => {
+    if (!id) {
+      setError('잘못된 영화 ID입니다.');
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchMovie = async () => {
+      try {
+        const res = await axios.get(`${TMDB_BASE}/movie/${id}`, {
+          params: { api_key: API_KEY, language: 'ko-KR' }
+        });
         setMovie(res.data);
+      } catch (err) {
+        console.error('❌ ComedyDetail API 오류:', err.response?.status, err.response?.data);
+        setError('영화 정보를 불러올 수 없습니다. (404)');
+      } finally {
         setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error('상세 정보 호출 오류:', err);
-        setIsLoading(false);
-      });
+      }
+    };
+
+    fetchMovie();
   }, [id]);
 
   if (isLoading) return <div className="loading">불러오는 중...</div>;
+  if (error) return <div className="error">{error}</div>;
   if (!movie) return <div>해당 영화 정보를 찾을 수 없습니다.</div>;
 
   return (
     <div className="comedyDetailPage">
       <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '/no-image.jpg'}
         alt={movie.title}
       />
       <div className="movieInfo">
