@@ -96,7 +96,12 @@ const Home = () => {
           <input
             type="search"
             value={searchWord}
-            onChange={(e) => setSearchWord(e.target.value)}
+            onChange={(e) => {
+              setSearchWord(e.target.value);
+              if (e.target.value.trim() === "") {
+                setSearchResults([]); // ✅ 검색어 삭제 시 검색 결과 초기화
+              }
+            }}
             onKeyDown={handleKeyPress}
             placeholder="영화제목을 입력해주세요."
           />
@@ -105,16 +110,31 @@ const Home = () => {
           </button>
         </div>
 
-        {/* 검색 결과 */}
+        {/* ✅ 검색 결과 UI */}
         {searchResults.length > 0 && (
           <div className="searchResults">
-            <ul className="searchMovieList">
+            <h2>검색 결과</h2>
+            <div className="movieList">
               {searchResults.map((movie) => (
-                <li key={movie.id}>
-                  <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-                </li>
+                <div className="movieItem" key={movie.id}>
+                  <Link to={`/movies/${movie.id}`}>
+                    <div className="imgWrap">
+                      <img
+                        src={movie.poster_path 
+                          ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` 
+                          : '/no-image.jpg'} 
+                        alt={movie.title}
+                      />
+                    </div>
+                    <div className="textWrap">
+                      <h3>{movie.title}</h3>
+                      <p>개봉일: {movie.release_date}</p>
+                      <p className="average">{movie.vote_average}</p>
+                    </div>
+                  </Link>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         )}
       </div>

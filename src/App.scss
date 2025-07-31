@@ -487,6 +487,100 @@ body {
     }
   }
 
+
+  //검색
+  /* ✅ 검색 결과 */
+.searchResults {
+  padding: 40px 50px;
+  /* background: #fafafa; */
+
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: $color-dark-point;
+  }
+
+  .movieList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1%;
+    max-width: 1240px;
+    margin: 0 auto;
+
+    .movieItem {
+      width: 19%;
+      height: 400px;
+      background: $color-dark-point;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+      }
+
+      .imgWrap {
+        width: 100%;
+        height: 320px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover img {
+          transform: scale(1.05);
+        }
+      }
+
+      .textWrap {
+        padding: 10px;
+        color: #fff;
+        position: relative;
+
+        h3 {
+          font-size: small;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin: 5px 0;
+        }
+
+        p {
+          font-size: small;
+        }
+
+        .average {
+          position: absolute;
+          top: -15px;
+          right: 10px;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background: $color-dark-highlight;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: x-small;
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
   .mainUpComing {
     padding: 20px 50px;
 
