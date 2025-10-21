@@ -42,7 +42,7 @@ const MovieCard = ({ movie, type = "drama" }) => {
     }
   };
 
-  // ✅ type 값에 따라 라우트 결정
+  // type 값에 따라 라우트 결정
   const linkPath = type === "comedy" ? `/comedy/${movie.id}` : `/drama/${movie.id}`;
 
   return (
