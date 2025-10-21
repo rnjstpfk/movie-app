@@ -32,7 +32,7 @@ body {
 }
 
 
-/* ✅ Header 스타일 */
+/* Header */
 .header {
     width: 100%;
     height: 100px;
@@ -78,7 +78,6 @@ body {
 
         .welcome {
             color: #fff;
-            /* ✅ "닉네임님" 가시성 확보 */
             font-weight: bold;
             font-size: 14px;
         }
@@ -103,7 +102,7 @@ body {
     }
 }
 
-/* ✅ 로그인 & 회원가입 페이지 공통 스타일 */
+/* 로그인 & 회원가입 페이지 공통 스타일 */
 .authPage,
 .signupPage {
     max-width: 400px;
@@ -489,7 +488,7 @@ body {
 
 
   //검색
-  /* ✅ 검색 결과 */
+  /* 검색 결과 */
 .searchResults {
   padding: 40px 50px;
   /* background: #fafafa; */
@@ -973,7 +972,7 @@ body {
 
 
 
-/* ✅ 드라마 목록 (MovieCard 스타일 사용) */
+/*  드라마 목록 */
 .dramaPage {
   padding: 120px 40px;
   background: #fafafa;
@@ -996,7 +995,7 @@ body {
   }
 }
 
-/* ✅ 드라마 상세 페이지 */
+/*  드라마 상세 페이지 */
 .dramaDetailPage {
   max-width: 1000px;
   margin: 300px auto 50px;
@@ -1096,7 +1095,7 @@ body {
     }
 }
 
-/* ✅ MovieCard 내부 스타일을 함께 정리 */
+/*  MovieCard 내부 스타일 */
 .movieItem {
     width: 180px;
     background: #fff;
@@ -1215,7 +1214,7 @@ body {
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
-  padding-bottom: 50px; /* ✅ 하트 공간 확보 */
+  padding-bottom: 50px; /* 하트 공간 확보 */
 
   &:hover {
     transform: translateY(-5px);
@@ -1238,7 +1237,7 @@ body {
     overflow: hidden;
   }
 
-  /* ✅ 하트 아이콘 */
+  /* 하트 아이콘 */
   .heartIcon {
     position: absolute;
     bottom: 12px;
