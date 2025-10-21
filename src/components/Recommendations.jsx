@@ -6,7 +6,6 @@ import { GrFormPrevious } from "react-icons/gr";
 
 // Import Swiper styles
 import 'swiper/css';
-// ✨ 추가해야 할 부분!
 import 'swiper/css/navigation';
 
 
