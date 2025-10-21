@@ -4,7 +4,7 @@ import Home from "./routes/Home";
 import Login from './routes/Login';
 import Signup from './routes/Signup';
 import ResetPassword from './routes/ResetPassword';
-import MyPage from './routes/MyPage';   // ✅ 마이페이지는 유지
+import MyPage from './routes/MyPage';  
 import Drama from "./routes/Detail";
 import MoviesDetail from "./routes/MoviesDetail";
 import DramaDetail from './routes/DramaDetail';
