@@ -11,11 +11,11 @@ const Header = () => {
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
-        // ✅ Firebase Auth 상태 감지
+        // Firebase Auth 상태 감지
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
                 setUserId(user.uid);
-                // ✅ Firestore에서 닉네임 가져오기
+                // Firestore에서 닉네임 가져오기
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists()) {
                     setUserNickname(userDoc.data().nickname);
@@ -31,7 +31,7 @@ const Header = () => {
         return () => unsubscribe();
     }, []);
 
-    // ✅ 로그아웃 처리
+    // 로그아웃 처리
     const handleLogout = async () => {
         await signOut(auth);
         alert('로그아웃되었습니다.');
